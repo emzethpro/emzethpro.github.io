@@ -128,11 +128,6 @@
                 <input type="text" id="ruleKey" placeholder="contoh: rule_01" required>
             </div>
             <div class="form-group">
-                <label for="category">Category</label>
-                <input type="text" id="category" placeholder="contoh: ekspektasi_pernikahan" required>
-                <span class="help-text">Gunakan format snake_case. Akan ditampilkan sebagai UPPERCASE di dalam title.</span>
-            </div>
-            <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" id="title" placeholder="contoh: Tempati Posisi Masing-Masing" required>
             </div>
@@ -161,7 +156,6 @@
             e.preventDefault();
             // Ambil nilai dari form
             const ruleKey = document.getElementById('ruleKey').value.trim();
-            const category = document.getElementById('category').value.trim();
             const title = document.getElementById('title').value.trim();
             const keywordsRaw = document.getElementById('keywords').value;
             const contoh = document.getElementById('contoh').value.trim();
@@ -169,12 +163,10 @@
             const keywords = keywordsRaw.split(',')
                 .map(k => k.trim())
                 .filter(k => k.length > 0);
-            // Gabungkan category ke dalam title
-            const formattedTitle = `[${category.toUpperCase()}] ${title}`;
             // Bentuk objek JSON
             const resultObject = {
                 [ruleKey]: {
-                    title: formattedTitle,
+                    title: title,
                     keywords: keywords,
                     contoh: contoh
                 }
